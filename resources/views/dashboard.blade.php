@@ -13,6 +13,8 @@
 
                     @foreach ($links as $link)
                         <li>{{$link->title}}</li>
+                        <small>Contributed by: {{$link->creator->name}} {{$link->updated_at->diffForHumans()}}</small>
+                        <!-- El codigo muestra el nombre del creador y cuanto tiempo ha pasado desde que se publico. Todo para poder ver a quien pertenece el link y cuanto hace desde que lo publico. -->
                     @endforeach
                     {{$links->links()}}
                 </div>
