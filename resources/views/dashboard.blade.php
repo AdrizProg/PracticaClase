@@ -10,6 +10,11 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Here you will see the community Links") }}
+
+                    @foreach ($links as $link)
+                        <li>{{$link->title}}</li>
+                    @endforeach
+                    {{$links->links()}}
                 </div>
             </div>
         </div>
