@@ -8,13 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::post('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/dashboard', [CommunityLinkController::class, 'store'])
+->middleware(['auth', 'verified']);
 
 Route::get('/contact', function () {
     return view('contact');
