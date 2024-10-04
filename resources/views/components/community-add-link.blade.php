@@ -1,6 +1,6 @@
 <div class="md:col-span-1 bg-gray-800 p-6 rounded-lg shadow-md border border-gray-600 self-start">
     <h3 class="text-xl font-semibold mb-4 text-white">Contribute a link</h3>
-    <form method="GET" action="/dashboard">
+    <form method="POST" action="/dashboard">
         @csrf
         <div class="mb-4">
             <label for="title" class="block text-white font-medium">Title:</label>
@@ -30,4 +30,5 @@
 {{-- Se llama al metodo comunity, pero lo cambiamos para llamar al dashboard --}}
 
 {{-- Intenta enviar un enlace. ¿Que ocurrse y como puedes resolver el problema? --}}
-{{-- The POST method is not supported for route dashboard. Supported methods: GET, HEAD. La forma de solucionarlo es cambiando el metodo del formulario, y en vez de mandarlo por post habra que pasarlo por get. --}}
+{{-- The POST method is not supported for route dashboard. Supported methods: GET, HEAD. La forma de solucionarlo es cambiando el metodo del formulario, y en vez de mandarlo por post habra que pasarlo por get.
+Podria parecer que es asi, y es una solucion que realmente funciona, pero la forma correcta de resolverlo es añadiendo una nueva ruta para que dashboard soporte el metodo post. --}}
