@@ -5,15 +5,21 @@
         <div class="mb-4">
             <label for="title" class="block text-white font-medium">Title:</label>
             <input type="text" id="title" name="title"
-                class="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                class="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('title') is-invalid @enderror"
                 placeholder="What is the title of your article?">
+            @error('title')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="mb-4">
             <label for="link" class="block text-white font-medium">Link:</label>
             <input type="text" id="link" name="link"
-                class="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                class="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('link') is-invalid @else is-valid @enderror"
                 placeholder="What is the URL?">
+            @error('link')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="pt-3">
@@ -24,11 +30,14 @@
 </div>
 
 {{-- ¿Que hace la directiva @csrf? --}}
-{{-- La directiva csrf se encarga de cifrar los paquetes de inicio de sesion para que no puedan capturarlos y suplantar nuestro inicio de sesion haciendose pasa por nosotros --}}
+{{-- La directiva csrf se encarga de cifrar los paquetes de inicio de sesion para que no puedan capturarlos y suplantar
+nuestro inicio de sesion haciendose pasa por nosotros --}}
 
 {{-- ¿Que metodo se llamara en el controlador CommunityController al enviar el formulario? --}}
 {{-- Se llama al metodo comunity, pero lo cambiamos para llamar al dashboard --}}
 
 {{-- Intenta enviar un enlace. ¿Que ocurrse y como puedes resolver el problema? --}}
-{{-- The POST method is not supported for route dashboard. Supported methods: GET, HEAD. La forma de solucionarlo es cambiando el metodo del formulario, y en vez de mandarlo por post habra que pasarlo por get.
-Podria parecer que es asi, y es una solucion que realmente funciona, pero la forma correcta de resolverlo es añadiendo una nueva ruta para que dashboard soporte el metodo post. --}}
+{{-- The POST method is not supported for route dashboard. Supported methods: GET, HEAD. La forma de solucionarlo es
+cambiando el metodo del formulario, y en vez de mandarlo por post habra que pasarlo por get.
+Podria parecer que es asi, y es una solucion que realmente funciona, pero la forma correcta de resolverlo es añadiendo
+una nueva ruta para que dashboard soporte el metodo post. --}}
