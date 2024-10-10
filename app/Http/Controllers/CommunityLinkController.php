@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CommunityLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Channel;
 
 class CommunityLinkController extends Controller
 {
@@ -16,6 +17,8 @@ class CommunityLinkController extends Controller
         // return view('dashboard');
 
         $links = CommunityLink::paginate(10);
+        $channels = Channel::orderBy('title','asc')->get();
+        /*** ¿Que hace el codigo anterior? Ordena la columna titulo de manera ascendente y obtiene el resultado */
         return view('dashboard', compact('links'));
     }
 
@@ -35,6 +38,7 @@ class CommunityLinkController extends Controller
         $data = $request->validate([
             'title' => 'required|max:255',
             'link' => 'required|unique:community_links|url|max:255',
+            'channel_id' => 'required|exists:channels,id'
         ]);
 
         $link = new CommunityLink($data);
