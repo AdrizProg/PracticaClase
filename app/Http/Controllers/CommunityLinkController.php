@@ -19,7 +19,7 @@ class CommunityLinkController extends Controller
         $links = CommunityLink::paginate(10);
         $channels = Channel::orderBy('title','asc')->get();
         /*** ¿Que hace el codigo anterior? Ordena la columna titulo de manera ascendente y obtiene el resultado */
-        return view('dashboard', compact('links'));
+        return view('dashboard', compact('links'), compact('channels'));
     }
 
     /**
@@ -44,7 +44,6 @@ class CommunityLinkController extends Controller
         $link = new CommunityLink($data);
         // Si uso CommunityLink::create($data) tengo que declarar user_id y channel_id como $fillable
         $link->user_id = Auth::id();
-        $link->channel_id = 1;
         $link->save();
         return back();
     }

@@ -10,8 +10,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CommunityLinkFactory extends Factory
 {
     protected $fillable = [
-        'user_id', 'channel_id', 'title', 'link', 'approved'
-      ];
+        'title',
+        'link',
+        'channel_id'
+        ];
+      
     /**
      * Define the model's default state.
      *
