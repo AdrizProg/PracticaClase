@@ -16,7 +16,7 @@ class CommunityLinkController extends Controller
     {
         // return view('dashboard');
 
-        $links = CommunityLink::paginate(10);
+        $links = CommunityLink::where('approved', 1)->paginate(25);
         $channels = Channel::orderBy('title','asc')->get();
         /*** ¿Que hace el codigo anterior? Ordena la columna titulo de manera ascendente y obtiene el resultado */
         return view('dashboard', compact('links'), compact('channels'));
