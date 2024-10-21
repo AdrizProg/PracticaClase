@@ -23,8 +23,6 @@ return new class extends Migration {
 
             $table->string('title');
 
-            $table->string('link')->unique();
-
             $table->boolean('approved')->default(0);
 
             $table->timestamps();

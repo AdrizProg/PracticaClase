@@ -46,15 +46,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-}
 
-class Post extends Model
-{
-    /**
-     * Get the comments for the blog post.
-     */
     public function links(): HasMany
     {
         return $this->hasMany(CommunityLink::class);
+    }
+
+    public function isTrusted()
+    {
+        return $this->trusted;
     }
 }

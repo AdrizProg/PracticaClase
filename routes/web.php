@@ -11,9 +11,7 @@ Route::get('/', function () {
 Route::post('/dashboard', [CommunityLinkController::class, 'store'])
 ->middleware(['auth', 'verified']);
 
-Route::get('/contact', function () {
-    return view('contact');
-})->middleware(['auth', 'verified'])->name('contact');
+Route::get('/mylinks', [CommunityLinkController::class, 'mylinks'] )->middleware(['auth', 'verified'])->name('mylinks');
 
 Route::get('/analytics', function () {
     return view('analytics');

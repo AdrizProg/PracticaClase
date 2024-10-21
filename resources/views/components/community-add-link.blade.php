@@ -26,11 +26,9 @@
         <div class="mb-4">
             <label for="link" class="block text-white font-medium">Link:</label>
             <input type="text" id="link" name="link"
-                class="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('link') is-invalid @else is-valid @enderror"
+                class="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="What is the URL?" value="{{ old('link') }}">
-            @error('link')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                    <span class="block sm:inline">{{ $message }}</span>
                     <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
                         onclick="this.parentElement.style.display='none';">
                         <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +39,6 @@
                     </span>
                 </div>
 
-            @enderror
         </div>
 
         <div class="mb-4">

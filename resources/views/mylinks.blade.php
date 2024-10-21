@@ -3,7 +3,6 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Community Contributions') }}
         </h2>
-        <x-link-flash></x-link-flash>
     </x-slot>
 
     <div class="py-12">
@@ -13,12 +12,11 @@
                 <!-- Sección de los enlaces (ocupa el mayor espacio) -->
 
                 <x-community-link :links="$links" />
-                
 
                 <!-- Sección del formulario de agregar link (ocupa menos espacio y está a la derecha) -->
                 <div class="lg:w-1/4">
 
-                <x-community-add-link :channels="$channels" />
+
 
                 </div>
             </div>

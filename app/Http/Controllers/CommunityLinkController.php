@@ -17,10 +17,17 @@ class CommunityLinkController extends Controller
     {
         // return view('dashboard');
 
-        $links = CommunityLink::where('approved', 1)->paginate(25);
+        $links = CommunityLink::where('approved', true)->latest('updated_at')->paginate(25);
         $channels = Channel::orderBy('title', 'asc')->get();
         /*** ¿Que hace el codigo anterior? Ordena la columna titulo de manera ascendente y obtiene el resultado */
         return view('dashboard', compact('links'), compact('channels'));
+    }
+
+    public function mylinks()
+    {
+        $user = Auth::user();
+        $links = $user->links()->paginate(10);
+        return view('mylinks', compact('links'));
     }
 
     /**
@@ -36,19 +43,26 @@ class CommunityLinkController extends Controller
      */
     public function store(CommunityLinkForm $request)
     {
-        $data = $request->validated();
 
+
+        $data = $request->validated();
         $link = new CommunityLink($data);
         // Si uso CommunityLink::create($data) tengo que declarar user_id y channel_id como $fillable
-        $link->user_id = Auth::id();
-        $link->approved = Auth::user()->trusted ?? false;
-        $link->save();
-        if (Auth::user()->trusted) {
-            return back()->with('status', 'Link aprobado');
+        $existe = $link->hasAlreadyBeenSubmitted();
+        if ($existe) {
+            return back();
         } else {
-            return back()->with('status', 'Link a la espera de aprobacion');
+            $link->user_id = Auth::id();
+            $link->approved = Auth::user()->trusted ?? false;
+            $link->save();
+            if (Auth::user()->trusted) {
+                return back()->with('status', 'Link aprobado');
+            } else {
+                return back()->with('status', 'Link a la espera de aprobacion');
+            }
         }
     }
+
 
     /**
      * Display the specified resource.
