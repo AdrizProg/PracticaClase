@@ -13,6 +13,8 @@ Route::post('/dashboard', [CommunityLinkController::class, 'store'])
 
 Route::get('/mylinks', [CommunityLinkController::class, 'mylinks'] )->middleware(['auth', 'verified'])->name('mylinks');
 
+Route::get('dashboard/{channel:slug}', [CommunityLinkController::class, 'index']);
+
 Route::get('/analytics', function () {
     return view('analytics');
 })->middleware(['auth', 'verified'])->name('analytics');
