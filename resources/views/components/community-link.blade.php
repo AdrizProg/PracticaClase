@@ -11,7 +11,7 @@
                         {{$link->updated_at->diffForHumans()}}</small>
                     <span class="inline-block px-2 py-1 text-white text-sm font-semibold rounded"
                         style="background-color: {{ $link->channel->color }}">
-                        {{ $link->channel->title }}
+                        {{ $link->channel->title }} - {{ $link->users()->count() }}
                         </a>
                 </li>
             @endforeach
