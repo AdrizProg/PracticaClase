@@ -11,8 +11,26 @@
                         {{$link->updated_at->diffForHumans()}}</small>
                     <span class="inline-block px-2 py-1 text-white text-sm font-semibold rounded"
                         style="background-color: {{ $link->channel->color }}">
-                        {{ $link->channel->title }} - {{ $link->users()->count() }}
+                        {{ $link->channel->title }}
                         </a>
+                        <form method="POST" action="/votes/{{ $link->id }}">
+
+
+
+@csrf
+
+
+<button type="submit"
+
+class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
+
+{{ !Auth::user()->isTrusted() ? 'disabled' : '' }}>
+
+{{ $link->users()->count() }}
+
+</button>
+
+</form>
                 </li>
             @endforeach
         </ul>
