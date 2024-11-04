@@ -7,6 +7,7 @@ use App\Models\CommunityLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Channel;
+use App\Queries\CommunityLinkQuery;
 
 class CommunityLinkController extends Controller
 {
@@ -16,30 +17,19 @@ class CommunityLinkController extends Controller
     public function index(Channel $channel = null)
     {
         $channels = Channel::orderBy('title', 'asc')->get();
+        $query = new CommunityLinkQuery();
 
         if (request()->exists('popular')) {
             if ($channel) {
-                $links = $channel->allLink()
-                    ->where('approved', true)
-                    ->withCount('votes') // Cambiar 'users' a 'votes'
-                    ->orderBy('votes_count', 'desc')
-                    ->paginate(25);
+                $links = $query->getByChannel($channel, true);
             } else {
-                $links = CommunityLink::where('approved', true)
-                    ->withCount('votes') // Cambiar 'users' a 'votes'
-                    ->orderBy('votes_count', 'desc')
-                    ->paginate(10);
+                $links = $query->getAll(true);
             }
         } else {
             if ($channel) {
-                $links = $channel->allLink()
-                    ->where('approved', true)
-                    ->latest('updated_at')
-                    ->paginate(25);
+                $links = $query->getByChannel($channel);
             } else {
-                $links = CommunityLink::where('approved', true)
-                    ->latest('updated_at')
-                    ->paginate(25);
+                $links = $query->getAll();
             }
         }
 
