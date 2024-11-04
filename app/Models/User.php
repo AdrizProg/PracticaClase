@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\CommunityLinkUser;
 
 class User extends Authenticatable
 {
@@ -57,7 +58,7 @@ class User extends Authenticatable
         return $this->trusted;
     }
 
-    protected function votes()
+    public function votes()
     {
         return $this->belongsToMany(CommunityLink::class, "community_link_users");
     }

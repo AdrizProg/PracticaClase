@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class CommunityLink extends Model
 {
@@ -50,6 +51,11 @@ class CommunityLink extends Model
     }
 
     public function users()
+    {
+        return $this->belongsToMany(User::class, 'community_link_users');
+    }
+
+    public function votes(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'community_link_users');
     }

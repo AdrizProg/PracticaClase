@@ -15,18 +15,38 @@ class CommunityLinkController extends Controller
      */
     public function index(Channel $channel = null)
     {
-
         $channels = Channel::orderBy('title', 'asc')->get();
-        /*** ¿Que hace el codigo anterior? Ordena la columna titulo de manera ascendente y obtiene el resultado */
 
-        if ($channel) {
-            $links = $channel->allLink()->where('approved', true)->latest('updated_at')->paginate(25);
+        if (request()->exists('popular')) {
+            if ($channel) {
+                $links = $channel->allLink()
+                    ->where('approved', true)
+                    ->withCount('votes') // Cambiar 'users' a 'votes'
+                    ->orderBy('votes_count', 'desc')
+                    ->paginate(25);
+            } else {
+                $links = CommunityLink::where('approved', true)
+                    ->withCount('votes') // Cambiar 'users' a 'votes'
+                    ->orderBy('votes_count', 'desc')
+                    ->paginate(10);
+            }
         } else {
-            $links = CommunityLink::where('approved', true)->latest('updated_at')->paginate(25);
+            if ($channel) {
+                $links = $channel->allLink()
+                    ->where('approved', true)
+                    ->latest('updated_at')
+                    ->paginate(25);
+            } else {
+                $links = CommunityLink::where('approved', true)
+                    ->latest('updated_at')
+                    ->paginate(25);
+            }
         }
 
-        return view('dashboard', compact('links'), compact('channels'));
+        return view('dashboard', compact('links', 'channels'));
     }
+
+
 
     public function mylinks()
     {
