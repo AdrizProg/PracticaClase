@@ -22,7 +22,10 @@
 
 <button type="submit"
 
-class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
+class="{{ Auth::check() && Auth::user()->votedFor($link) ?
+'px-4 py-2 rounded bg-green-500 hover:bg-green-600 text-white' :
+'px-4 py-2 rounded bg-gray-500 hover:bg-gray-600 text-white'
+}}"
 
 {{ !Auth::user()->isTrusted() ? 'disabled' : '' }}>
 
