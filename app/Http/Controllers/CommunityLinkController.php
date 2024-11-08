@@ -25,7 +25,9 @@ class CommunityLinkController extends Controller
             } else {
                 $links = $query->getAll(true);
             }
-        } else {
+        } else if (request()->exists('search')) {
+            $links = $query->titlesearch(request()->get('search'));
+        } else if (!request()->exists('popular')) {
             if ($channel) {
                 $links = $query->getByChannel($channel);
             } else {

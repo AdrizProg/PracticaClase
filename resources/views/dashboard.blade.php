@@ -4,6 +4,31 @@
             {{ __('Community Contributions') }}
         </h2>
         <x-link-flash></x-link-flash>
+        <ul class="flex space-x-4">
+
+            <li>
+
+                <a class="px-4 py-2 rounded-lg {{ request()->exists('popular') ? 'text-blue-500 hover:text-blue-700' : 'text-gray-500 cursor-not-allowed' }}"
+                    href="{{ request()->url() }}">
+
+                    Most recent
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a class="px-4 py-2 rounded-lg {{ request()->exists('popular') ? 'text-gray-500 cursor-not-allowed' : 'text-blue-500 hover:text-blue-700' }}"
+                    href="?popular">
+
+                    Most popular
+
+                </a>
+
+            </li>
+
+        </ul>
     </x-slot>
 
     <div class="py-12">
@@ -13,12 +38,12 @@
                 <!-- Sección de los enlaces (ocupa el mayor espacio) -->
 
                 <x-community-link :links="$links" />
-                
+
 
                 <!-- Sección del formulario de agregar link (ocupa menos espacio y está a la derecha) -->
                 <div class="lg:w-1/4">
 
-                <x-community-add-link :channels="$channels" />
+                    <x-community-add-link :channels="$channels" />
 
                 </div>
             </div>

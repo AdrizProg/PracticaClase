@@ -51,4 +51,10 @@ class CommunityLinkQuery
                             ->orderBy('votes_count', 'desc')
                             ->paginate(10);
     }
+
+    public function titlesearch(string $search) {
+        $query = CommunityLink::where('approved', true)->whereAny(['title', 'link'], 'LIKE',"%{$search}%")->paginate(10);
+
+        return $query;
+    }
 }
