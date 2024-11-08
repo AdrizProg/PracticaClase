@@ -28,6 +28,11 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('profile-images', 'public');
+            $request->user()->image = $path;
+            }
+            
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }

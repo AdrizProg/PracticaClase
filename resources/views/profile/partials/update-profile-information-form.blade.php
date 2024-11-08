@@ -32,7 +32,7 @@
 
             <x-input-label for="image" :value="__('Image')" />
             <x-text-input id="image" name="image" type="file" class="mt-1 block w-full" />
-            <x-input-error class="mt-2" :messages="$errors->get('Image')" />
+            <x-input-error class="mt-2" :messages="$errors->get('image')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                 <div>
