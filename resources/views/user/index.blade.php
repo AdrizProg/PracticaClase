@@ -29,7 +29,6 @@
                                         
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Name</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Email</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Image</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Trusted</th>
 
                                         <th scope="col" class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500"></th>
@@ -42,7 +41,6 @@
                                             
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->name }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->email }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->image }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->trusted }}</td>
 
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
