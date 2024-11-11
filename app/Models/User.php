@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,9 +9,31 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\CommunityLinkUser;
 
+/**
+ * Class User
+ *
+ * @property $id
+ * @property $name
+ * @property $email
+ * @property $email_verified_at
+ * @property $password
+ * @property $image
+ * @property $remember_token
+ * @property $created_at
+ * @property $updated_at
+ * @property $trusted
+ *
+ * @property CommunityLinkUser[] $communityLinkUsers
+ * @property CommunityLink[] $communityLinks
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
 class User extends Authenticatable
 {
+    
     use HasFactory, Notifiable;
+
+    protected $perPage = 20;
 
     /**
      * The attributes that are mass assignable.
@@ -26,11 +47,6 @@ class User extends Authenticatable
         'image'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -41,6 +57,23 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function communityLinkUsers()
+    {
+        return $this->hasMany(\App\Models\CommunityLinkUser::class, 'id', 'user_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function communityLinks()
+    {
+        return $this->hasMany(\App\Models\CommunityLink::class, 'id', 'user_id');
+    }
+    
     protected function casts(): array
     {
         return [
@@ -68,4 +101,5 @@ class User extends Authenticatable
     {
         return $this->votes->contains($link);
     }
+    
 }
