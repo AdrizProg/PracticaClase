@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
+Route::resource('users', UserController::class)->middleware('can:administrate,App\Models\User');
 
 Route::get('/dashboard', [CommunityLinkController::class, 'index'])
 ->middleware(['auth', 'verified'])
