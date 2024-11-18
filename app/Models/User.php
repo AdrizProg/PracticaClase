@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use HasApiTokens;
+// use HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\CommunityLinkUser;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * Class User
@@ -31,7 +32,7 @@ use App\Models\CommunityLinkUser;
 class User extends Authenticatable
 {
     
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $perPage = 20;
 
