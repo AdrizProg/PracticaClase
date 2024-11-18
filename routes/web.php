@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-// use App\Http\Controllers\CommunityLinkController;
+use App\Http\Controllers\CommunityLinkController;
 use App\Http\Controllers\CommunityLinkUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Api\v1\CommunityLinkController;
+// use App\Http\Controllers\Api\v1\CommunityLinkController;
 
 Route::get('/', function () {
     return view('welcome');

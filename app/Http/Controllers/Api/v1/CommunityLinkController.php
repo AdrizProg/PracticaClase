@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\CommunityLink;
 use Illuminate\Http\Request;
+use App\Queries\CommunityLinkQuery;
 
 class CommunityLinkController extends Controller
 {
@@ -13,7 +14,23 @@ class CommunityLinkController extends Controller
      */
     public function index()
     {
-        //
+        $query = new CommunityLinkQuery();
+
+        if (request()->exists('popular')) {
+
+                $links = $query->getAll(true);
+
+        } else if (request()->exists('search')) {
+
+            $links = $query->titlesearch(request()->get('search'));
+
+        } else  {
+
+                $links = $query->getAll();
+
+        }
+
+        return response()->json($links, 200);
     }
 
     /**
