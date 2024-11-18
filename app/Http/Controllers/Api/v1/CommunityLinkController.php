@@ -18,15 +18,30 @@ class CommunityLinkController extends Controller
 
         if (request()->exists('popular')) {
 
-                $links = $query->getAll(true);
+            $links = $query->getAll(true);
+            $response = [
+                'status' => 'success',
+                'message' => 'Link already submitted',
+                'data' => $links,
+            ];
 
         } else if (request()->exists('search')) {
-        
+
             $links = $query->titlesearch(request()->get('search'));
             dd($links);
-        } else  {
+            $response = [
+                'status' => 'success',
+                'message' => 'Link already submitted',
+                'data' => $links,
+            ];
+        } else {
 
-                $links = $query->getAll();
+            $links = $query->getAll();
+            $response = [
+                'status' => 'success',
+                'message' => 'Link already submitted',
+                'data' => $links,
+            ];
 
         }
 
@@ -38,7 +53,7 @@ class CommunityLinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
