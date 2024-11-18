@@ -21,9 +21,9 @@ class CommunityLinkController extends Controller
                 $links = $query->getAll(true);
 
         } else if (request()->exists('search')) {
-
+        
             $links = $query->titlesearch(request()->get('search'));
-
+            dd($links);
         } else  {
 
                 $links = $query->getAll();

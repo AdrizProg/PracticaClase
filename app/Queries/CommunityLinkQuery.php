@@ -44,13 +44,13 @@ class CommunityLinkQuery
     /**
      * Obtiene los links más populares
      */
-    public function getMostPopular()
-    {
-        return CommunityLink::where('approved', true)
-                            ->withCount('votes')
-                            ->orderBy('votes_count', 'desc')
-                            ->paginate(10);
-    }
+    // public function getMostPopular()
+    // {
+    //     return CommunityLink::where('approved', true)
+    //                         ->withCount('votes')
+    //                         ->orderBy('votes_count', 'desc')
+    //                         ->paginate(10);
+    // }
 
     public function titlesearch(string $search) {
         $query = CommunityLink::where('approved', true)->whereAny(['title', 'link'], 'LIKE',"%{$search}%")->paginate(10);
