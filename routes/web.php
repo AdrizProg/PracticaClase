@@ -34,8 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::apiResource('v1/communitylinks', CommunityLinkController::class);
-
 Route::resource('users', UserController::class)->middleware('can:administrate,App\Models\User');
 
 Route::get('/dashboard', [CommunityLinkController::class, 'index'])
